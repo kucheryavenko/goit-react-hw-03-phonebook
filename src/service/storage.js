@@ -24,10 +24,8 @@ const remove = key => {
   }
 };
 
-const storage = {
+export const storage = {
   save,
   load,
   remove,
 };
-
-export default storage;

@@ -6,7 +6,8 @@ import { Filter } from 'components/Filter';
 import { Section } from 'components/Section';
 import { Title } from 'components/Title';
 import { Container } from 'components/App/App.styled';
-import storage from 'service/storage';
+import { Notification } from 'components/Notification';
+import { storage } from 'service/storage';
 
 const LS_KEY = 'contacts';
 
@@ -98,10 +99,14 @@ export class App extends Component {
         <ContactForm addContact={addContact} />
         <Section title={'Contacts'}>
           <Filter value={filter} changeFilter={changeFilter} />
-          <ContactList
-            visibleContacts={visibleContacts}
-            deleteContact={deleteContact}
-          />
+          {visibleContacts.length !== 0 ? (
+            <ContactList
+              visibleContacts={visibleContacts}
+              deleteContact={deleteContact}
+            />
+          ) : (
+            <Notification message="You don't have contacts yet..." />
+          )}
         </Section>
       </Container>
     );
